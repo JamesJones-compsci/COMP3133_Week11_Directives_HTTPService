@@ -1,9 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { HTTPService } from '../shared/httpservice';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-product-list',
-  imports: [],
+  imports: [CommonModule, FormsModule],
   templateUrl: './product-list.html',
   styleUrl: './product-list.css',
 })
@@ -14,9 +16,42 @@ export class ProductList {
 
   products : any[] = [];
 
+  selectedCategory : string = "";
+  searchTerm : string = "";
+
+  // extract unique ccategories from product list
+  get productCategories() {
+    return [...new Set(this.products.map(p => p.category))]; 
+  }
+
+  filteredProducts() {
+    let result = [...this.products]; // create a copy of the products array
+
+    if (this.selectedCategory) {
+      result = result.filter(p => p.category === this.selectedCategory);
+    }
+
+    if (this.searchTerm.trim()){
+      result = result.filter(p => p.title.toLowerCase().includes(this.searchTerm.toLowerCase()));
+    }
+
+    return result;
+  }
+
   // will be called when the PostList component is created/mounted
   ngOnInit() {
-    this.getProducts();
+     this.getProducts();
+  }
+
+  onSubmitClicked(){
+    console.log(`Filters Applied!`);
+
+  }
+
+  onClearClicked(){
+    console.log(`Filters Reset!`);
+    this.selectedCategory = "";
+    this.searchTerm = "";
   }
 
   getProducts(){

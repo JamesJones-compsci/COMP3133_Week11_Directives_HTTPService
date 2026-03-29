@@ -9,7 +9,7 @@ h1 {
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 300px));
-  justify-content: center; /* 
+  justify-content: center; 
   gap: 20px;
   padding: 20px;
 }
@@ -24,11 +24,21 @@ h1 {
   justify-content: center;
 }
 
+.card > * {
+  margin-bottom: 10px;
+}
+
 
 /* Product title */
 .product-title {
   font-size: 18px;
   margin-bottom: 10px;
+  color: #3498db;
+  cursor: pointer;
+}
+
+.product-title:hover {
+  text-decoration: underline;
 }
 
 /* Image container */
@@ -48,21 +58,30 @@ h1 {
 /* Price label */
 .price-label {
   font-size: 14px;
-  color: #777;
-  text-align: center; /* ✅ ADD THIS */
+  color: #000;
+  text-align: center; 
 }
 
 /* Price value */
 .price {
   font-size: 18px;
   font-weight: bold;
-  color: #2ecc71;
+  color: #27ae60;
 }
 
-/* Info row (rating, etc.) */
+/* Info row (rating, etc.)*/
+.info-row {
+  width: 100%;              
+  display: flex;
+  justify-content: center; 
+  margin-top: 8px;
+}
+
+/*
 .info-row {
   margin-top: 8px;
 }
+*/  
 
 /* Rating */
 .rating {
@@ -71,7 +90,63 @@ h1 {
 
 /* Category */
 .category {
-  margin-top: 5px;
+  margin-top: 15px;
   font-size: 13px;
+  color: #000;
+}
+
+/* Group label + dropdown */
+.form-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Style dropdown */
+select {
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+/* Center the whole form under the title */
+.filters {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+/* Buttons styling */
+.filters button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  background-color: #3498db; 
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* Force Clear button to its OWN ROW */
+.filters button[type="reset"] {
+  display: block;        /* important */
+  width: 55%;           /* takes full row */
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* Hover effect */
+.filters button:hover {
+  background-color: #2980b9;
+}
+
+.hint {
+  text-align: center;
+  margin-top: 10px;
   color: #888;
+  font-size: 14px;
+  font-style: italic;
 }
